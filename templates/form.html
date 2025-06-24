@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom right, #fceabb, #f8b500);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: slideIn 1.5s ease-out;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 400px;
+      animation: popUp 1s ease-in;
+    }
+    h2 {
+      text-align: center;
+      color: #f57c00;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #f57c00;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #e65100;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popUp {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Child Information</h2>
+    <form method="POST" action="/submit">
+      <label>Child's Name:</label>
+      <input type="text" name="name" required>
+
+      <label>Age:</label>
+      <input type="number" name="age" required>
+
+      <label>Class:</label>
+      <input type="text" name="class" required>
+
+      <label>School:</label>
+      <input type="text" name="school" required>
+
+      <label>Father's Name:</label>
+      <input type="text" name="father">
+
+      <label>Mother's Name:</label>
+      <input type="text" name="mother">
+
+      <label>Siblings' Names (comma-separated):</label>
+      <textarea name="siblings"></textarea>
+
+      <label>Friends' Names (comma-separated):</label>
+      <textarea name="friends"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

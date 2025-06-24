@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Our World</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to top, #d0f0fd, #fffbe6);
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+    h1 {
+      font-size: 3em;
+      color: #ff6f61;
+      animation: popIn 1s ease-out forwards;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+    .btn:hover {
+      background-color: #ff3b2e;
+    }
+    .flowers, .clouds, .tree {
+      position: absolute;
+    }
+    .clouds {
+      top: 50px;
+      width: 100%;
+      animation: floatClouds 60s linear infinite;
+    }
+    .flowers {
+      bottom: 0;
+      width: 100%;
+      animation: sway 6s ease-in-out infinite;
+    }
+    .tree {
+      bottom: 20px;
+      left: 50px;
+      animation: sway 5s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes sway {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.5); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes floatClouds {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Our World</h1>
+    <button class="btn" onclick="startForm()">Let's Start</button>
+  </div>
+
+  <img class="clouds" src="https://i.ibb.co/0Jmshvb/clouds.png" alt="Clouds" height="150">
+  <img class="tree" src="https://i.ibb.co/nQkVZK2/tree.png" alt="Tree" height="200">
+  <img class="flowers" src="https://i.ibb.co/5GGBZpF/flowers.png" alt="Flowers" height="100">
+
+  <script>
+    function startForm() {
+      window.location.href = "/form.html"; // Updated form page
+    }
+  </script>
+</body>
+</html>
