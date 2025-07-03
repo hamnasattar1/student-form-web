@@ -2,95 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Form</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(to bottom right, #fceabb, #f8b500);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      animation: slideIn 1.5s ease-out;
-    }
-    .form-container {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      width: 400px;
-      animation: popUp 1s ease-in;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px;
     }
     h2 {
-      text-align: center;
-      color: #f57c00;
+      color: #ff6f61;
+    }
+    form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     label {
       display: block;
       margin-top: 15px;
+      font-weight: bold;
     }
-    input, textarea {
+    input, select, textarea {
       width: 100%;
       padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
       margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .section {
+      margin-top: 30px;
+      border-top: 2px dashed #ccc;
+      padding-top: 20px;
+    }
+    .grouped {
+      display: flex;
+      gap: 15px;
+    }
+    .grouped > div {
+      flex: 1;
     }
     button {
       margin-top: 20px;
-      width: 100%;
-      background-color: #f57c00;
-      color: white;
-      padding: 12px;
+      padding: 12px 20px;
+      background: #ff6f61;
+      color: #fff;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 1em;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background-color: #e65100;
-    }
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes popUp {
-      0% { transform: scale(0.8); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
     }
   </style>
+  <script>
+    function updateSiblings() {
+      const count = parseInt(document.getElementById('siblingsCount').value) || 0;
+      const container = document.getElementById('siblingsContainer');
+      container.innerHTML = '';
+      for (let i = 1; i <= count; i++) {
+        container.innerHTML += `
+          <div class="grouped">
+            <div>
+              <label for="sibling_name_${i}">Sibling ${i} Name:</label>
+              <input type="text" name="sibling_name_${i}" required />
+            </div>
+            <div>
+              <label for="sibling_gender_${i}">Gender:</label>
+              <select name="sibling_gender_${i}" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function updateFriends() {
+      const count = parseInt(document.getElementById('friendsCount').value) || 0;
+      const container = document.getElementById('friendsContainer');
+      container.innerHTML = '';
+      for (let i = 1; i <= count; i++) {
+        container.innerHTML += `
+          <div class="grouped">
+            <div>
+              <label for="friend_name_${i}">Friend ${i} Name:</label>
+              <input type="text" name="friend_name_${i}" required />
+            </div>
+            <div>
+              <label for="friend_gender_${i}">Gender:</label>
+              <select name="friend_gender_${i}" required>
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Child Information</h2>
-    <form method="POST" action="/submit">
-      <label>Child's Name:</label>
-      <input type="text" name="name" required>
+  <h2>Student Bio Form</h2>
+  <form action="/submit" method="POST">
+    <label for="name">Your Name:</label>
+    <input type="text" name="name" required>
 
-      <label>Age:</label>
-      <input type="number" name="age" required>
+    <label for="gender">Your Gender:</label>
+    <select name="gender" required>
+      <option value="">Select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
 
-      <label>Class:</label>
-      <input type="text" name="class" required>
+    <label for="age">Your Age:</label>
+    <input type="number" name="age" required>
 
-      <label>School:</label>
-      <input type="text" name="school" required>
+    <label for="class">Class:</label>
+    <input type="text" name="class" required>
 
-      <label>Father's Name:</label>
-      <input type="text" name="father">
+    <label for="school">School:</label>
+    <input type="text" name="school" required>
 
-      <label>Mother's Name:</label>
-      <input type="text" name="mother">
+    <div class="section">
+      <h3>Parents Information</h3>
+      <label for="father">Father's Name:</label>
+      <input type="text" name="father" required>
 
-      <label>Siblings' Names (comma-separated):</label>
-      <textarea name="siblings"></textarea>
+      <label for="mother">Mother's Name:</label>
+      <input type="text" name="mother" required>
+    </div>
 
-      <label>Friends' Names (comma-separated):</label>
-      <textarea name="friends"></textarea>
+    <div class="section">
+      <h3>Grandparents Information</h3>
+      <label for="grandfather">Grandfather's Name:</label>
+      <input type="text" name="grandfather">
 
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+      <label for="grandmother">Grandmother's Name:</label>
+      <input type="text" name="grandmother">
+    </div>
+
+    <div class="section">
+      <h3>Siblings Information</h3>
+      <label for="siblingsCount">Number of Siblings:</label>
+      <input type="number" id="siblingsCount" name="siblingsCount" onchange="updateSiblings()">
+      <div id="siblingsContainer"></div>
+    </div>
+
+    <div class="section">
+      <h3>Friends Information</h3>
+      <label for="friendsCount">Number of Friends:</label>
+      <input type="number" id="friendsCount" name="friendsCount" onchange="updateFriends()">
+      <div id="friendsContainer"></div>
+    </div>
+
+    <div class="section">
+      <h3>Neighborhood</h3>
+      <label for="neighbours">Neighbours' Names:</label>
+      <textarea name="neighbours" rows="3" placeholder="Ali, Sara, John..."></textarea>
+    </div>
+
+    <div class="section">
+      <h3>Tell Us About Yourself</h3>
+      <label for="description">Your Description (max 500 words):</label>
+      <textarea name="description" rows="6" maxlength="3000" placeholder="Write something about you, your family, hobbies, dreams..."></textarea>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>
